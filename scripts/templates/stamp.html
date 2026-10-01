@@ -1,0 +1,26 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:Archivo;src:url({{FONT}});font-weight:100 900;font-stretch:62% 125%}
+*{box-sizing:border-box}body{margin:0;background:transparent;font-family:Archivo,sans-serif}
+#host{display:inline-block}
+.stamp{padding:16px;background:#FDFBF6;display:flex;flex-direction:column;
+ -webkit-mask:linear-gradient(#000 0 0) content-box,radial-gradient(circle,#0000 9px,#000 9.5px) -13px -13px/26px 26px;
+ mask:linear-gradient(#000 0 0) content-box,radial-gradient(circle,#0000 9px,#000 9.5px) -13px -13px/26px 26px}
+.stamp .in{flex:1;min-height:0;display:flex;flex-direction:column;background:var(--c);padding:14px 14px 0}
+.stamp .img{flex:1;min-height:0;overflow:hidden;position:relative;background:#F0EEE6;outline:3px solid rgba(255,255,255,.85)}
+.stamp .img img{width:122%;margin-left:-11%;display:block}
+.stamp .lab{height:54px;display:flex;align-items:center;justify-content:space-between;padding:0 4px;color:#fff}
+.stamp .lab b{font-size:clamp(17px,calc(var(--w) * 0.075),24px);font-weight:850;font-variation-settings:"wdth" 108;white-space:nowrap}
+.stamp .lab svg{width:30px;height:30px;flex:none}
+</style></head><body><div id="host"></div>
+<script>
+const STAR='<svg viewBox="0 0 24 24" fill="#fff"><path d="M12 1.5l2.4 7.4H22l-6.1 4.5 2.3 7.4L12 16.3l-6.2 4.5 2.3-7.4L2 8.9h7.6z"/></svg>';
+window.make=(w,h,c,src,crop,label)=>{
+  document.getElementById('host').innerHTML=`<div class="stamp"><div class="in"><div class="img"><img></div><div class="lab"><b></b>${STAR}</div></div></div>`;
+  const st=document.querySelector('.stamp');st.style.width=w+'px';st.style.height=h+'px';st.style.setProperty('--c',c);st.style.setProperty('--w',w+'px');
+  const im=document.querySelector('#host img');im.style.marginTop=crop;
+  if(w>h){im.style.width='66%';im.style.marginLeft='17%'}
+  const lb=document.querySelector('.lab b');lb.textContent=label;
+  const ready=new Promise((r,j)=>{im.onload=r;im.onerror=()=>j(new Error('could not load '+src))});im.src=src;
+  return Promise.all([document.fonts.load('850 24px Archivo').then(f=>{if(!f.length)throw new Error('Archivo font did not load')}),ready]).then(()=>{const st=lb.nextElementSibling.getBoundingClientRect(), r=lb.getBoundingClientRect();return r.right>st.left-2});
+};
+</script></body></html>

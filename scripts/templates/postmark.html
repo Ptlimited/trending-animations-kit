@@ -1,0 +1,22 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:Archivo;src:url({{FONT}});font-weight:100 900;font-stretch:62% 125%}
+body{margin:0;background:transparent}
+#host{display:inline-block;padding:20px}
+</style></head><body>
+<svg width="0" height="0" style="position:absolute"><defs>
+<filter id="ink"><feTurbulence type="fractalNoise" baseFrequency=".055" numOctaves="3" seed="8" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="5" result="d"/>
+<feTurbulence type="fractalNoise" baseFrequency=".7" numOctaves="2" seed="5" result="g"/><feColorMatrix in="g" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -2.4 1.75" result="gm"/>
+<feComposite in="d" in2="gm" operator="in"/></filter></defs></svg>
+<div id="host"><svg id="pm" width="700" height="375" viewBox="0 0 560 300" style="filter:url(#ink);display:block">
+<g fill="none" stroke="#2E4A9A" stroke-width="7"><circle cx="150" cy="150" r="128"/><circle cx="150" cy="150" r="92" stroke-width="4"/>
+<path d="M290 95 q30 -18 60 0 t60 0 t60 0 t60 0"/><path d="M290 150 q30 -18 60 0 t60 0 t60 0 t60 0"/><path d="M290 205 q30 -18 60 0 t60 0 t60 0 t60 0"/></g>
+<defs><path id="ring" d="M150 150 m-110 0 a110 110 0 1 1 220 0 a110 110 0 1 1 -220 0"/></defs>
+<text fill="#2E4A9A" font-family="Archivo" font-weight="800" font-size="30"><textPath href="#ring" startOffset="0" textLength="680" lengthAdjust="spacing" id="ringtext"></textPath></text>
+<text x="150" y="140" text-anchor="middle" fill="#2E4A9A" font-family="Archivo" font-weight="850" font-size="46" id="l1"></text>
+<text x="150" y="190" text-anchor="middle" fill="#2E4A9A" font-family="Archivo" font-weight="850" font-size="46" id="l2"></text></svg></div>
+<script>
+window.setPostmark=(ring,l1,l2)=>{
+  document.getElementById('ringtext').textContent=ring;document.getElementById('l1').textContent=l1;document.getElementById('l2').textContent=l2;
+  return document.fonts.load('850 46px Archivo');
+};
+</script></body></html>

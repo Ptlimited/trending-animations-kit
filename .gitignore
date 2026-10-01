@@ -1,0 +1,6 @@
+.DS_Store
+__pycache__/
+.venv/
+# a viewer's working folder and the downloaded zip
+my-video/
+kit.zip

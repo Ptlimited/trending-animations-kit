@@ -1,0 +1,24 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:Archivo;src:url({{FONT}});font-weight:100 900;font-stretch:62% 125%}
+body{margin:0;background:transparent}
+#notes{width:1080px;height:1350px;position:relative}
+.card{position:absolute;left:120px;top:500px;width:840px;padding:34px 46px 46px;background:#fff;border-radius:30px;
+ box-shadow:0 30px 60px rgba(30,50,90,.28),0 6px 14px rgba(30,50,90,.18);font-family:Archivo,sans-serif;box-sizing:border-box}
+.top{display:flex;justify-content:space-between;align-items:center;color:#B8862B;font-size:30px;font-variation-settings:"wdth" 100}
+.top .b{display:flex;align-items:center;gap:6px;font-weight:500}.top .d{display:flex;align-items:center;gap:16px;font-weight:700}
+.dots{width:40px;height:40px;border:3px solid #B8862B;border-radius:50%;display:flex;align-items:center;justify-content:center;gap:4px;box-sizing:border-box}
+.dots i{width:5px;height:5px;background:#B8862B;border-radius:50%}
+h1{margin:26px 0 14px;font-size:70px;line-height:1;font-weight:850;font-variation-settings:"wdth" 104;letter-spacing:-1.5px;color:#111;white-space:nowrap}
+p{white-space:pre-line;margin:0;font-size:35px;line-height:1.22;color:#2a2a2a;font-weight:420;font-variation-settings:"wdth" 104}
+</style></head><body><div id="notes"><div class="card"><div class="top"><div class="b"><svg width="22" height="34" viewBox="0 0 22 34"><path d="M17 3 L4 17 L17 31" stroke="#B8862B" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Notes</div><div class="d"><div class="dots"><i></i><i></i><i></i></div>Done</div></div>
+<h1 id="h"></h1><p id="p"></p></div></div>
+<script>
+window.setNotes=(t,s,top,tilt)=>{
+  const c=document.querySelector('.card'), h=document.getElementById('h');
+  c.style.top=top+'px'; c.style.transform=`rotate(${tilt}deg)`;
+  h.textContent=t; document.getElementById('p').textContent=s;
+  let px=70; h.style.fontSize=px+'px';
+  while(h.scrollWidth>h.clientWidth&&px>36){px--;h.style.fontSize=px+'px'}
+  return h.scrollWidth>h.clientWidth;
+};
+</script></body></html>

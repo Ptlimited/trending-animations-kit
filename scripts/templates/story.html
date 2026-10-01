@@ -1,0 +1,78 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:Archivo;src:url({{FONT}});font-weight:100 900;font-stretch:62% 125%}
+*{box-sizing:border-box}body{margin:0;width:1080px;height:2160px;overflow:hidden;background:#000;font-family:Archivo,sans-serif}
+#stage{position:absolute;inset:0;overflow:hidden;background:#111}
+.seg{position:absolute;inset:0;display:none}
+.card{position:absolute;left:50%;top:330px;width:820px;height:1080px;margin-left:-410px;border-radius:34px;overflow:hidden;box-shadow:0 30px 70px rgba(0,0,0,.35);background:#faf9f5}
+.card img{width:100%;display:block}
+#bars{position:absolute;top:110px;left:24px;right:24px;display:flex;gap:8px}
+.bar{flex:1;height:6px;border-radius:3px;background:rgba(255,255,255,.4);overflow:hidden}.bar i{display:block;height:100%;width:0;background:#fff}
+#head{position:absolute;top:140px;left:26px;right:26px;display:flex;align-items:center;gap:18px;color:#fff}
+.av{width:74px;height:74px;border-radius:50%;padding:4px;background:conic-gradient(#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5,#feda75)}
+.av div{width:100%;height:100%;border-radius:50%;background:#141413;border:3px solid #000;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:24px}
+.nm{font-weight:700;font-size:30px}.tm{font-size:28px;opacity:.75;margin-left:4px}
+.ic{margin-left:auto;display:flex;gap:30px;align-items:center}
+.stk{position:absolute;left:540px;transform-origin:center;opacity:0}
+.pill{background:#fff;color:#111;font-weight:800;font-size:54px;padding:22px 38px;border-radius:22px;box-shadow:0 14px 40px rgba(0,0,0,.35);font-variation-settings:"wdth" 106;max-width:900px;text-align:center}
+.poll{width:660px;background:#fff;border-radius:34px;box-shadow:0 18px 50px rgba(0,0,0,.35);overflow:hidden;text-align:center}
+.poll .q{background:linear-gradient(90deg,#7b2ff7,#f107a3);color:#fff;font-weight:800;font-size:44px;padding:30px 36px;line-height:1.1}
+.poll .o{display:flex}.poll .o div{flex:1;padding:34px 0;font-weight:800;font-size:46px;color:#111;position:relative}
+.poll .o div+div{border-left:2px solid #eee}
+.poll .o .sel{color:#fff}.poll .o .sel:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#7b2ff7,#f107a3);z-index:-1}
+.poll .o div span{position:relative}
+.link{background:#fff;color:#2f6ff0;font-weight:800;font-size:48px;padding:22px 36px;border-radius:20px;display:flex;align-items:center;gap:16px;box-shadow:0 14px 40px rgba(0,0,0,.35);max-width:900px;overflow-wrap:anywhere}
+.qs{width:640px;border-radius:34px;overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,.35);text-align:center}
+.qs .t{background:#141413;color:#fff;font-weight:800;font-size:44px;padding:34px 40px 26px;line-height:1.15}
+.qs .f{background:#141413;padding:0 34px 34px}.qs .f div{background:rgba(255,255,255,.14);border-radius:18px;color:rgba(255,255,255,.65);font-size:34px;padding:22px}
+#tap{position:absolute;width:150px;height:150px;border-radius:50%;background:rgba(255,255,255,.55);opacity:0;transform:translate(-50%,-50%)}
+#foot{position:absolute;bottom:90px;left:26px;right:26px;display:flex;align-items:center;gap:30px}
+#foot .msg{flex:1;border:2px solid rgba(255,255,255,.75);border-radius:50px;color:#fff;font-size:32px;padding:22px 34px}
+</style></head><body><div id="stage">
+<div id="segs"></div>
+<div class="stk pill" id="s0" style="top:1575px"></div>
+<div class="stk poll" id="s1" style="top:1600px"><div class="q" id="pq"></div><div class="o"><div id="yes"><span id="pa"></span></div><div><span id="pb"></span></div></div></div>
+<div class="stk link" id="s2" style="top:1580px"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#2f6ff0" stroke-width="2.6" stroke-linecap="round"><path d="M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg><span id="ln"></span></div>
+<div class="stk qs" id="s3" style="top:1600px"><div class="t" id="qt"></div><div class="f"><div>Type something...</div></div></div>
+<div id="tap"></div>
+<div id="bars"><div class="bar"><i></i></div><div class="bar"><i></i></div><div class="bar"><i></i></div><div class="bar"><i></i></div></div>
+<div id="head"><div class="av"><div id="ini"></div></div><span class="nm" id="handle"></span><span class="tm">2h</span>
+<div class="ic"><svg width="40" height="40" viewBox="0 0 24 24" fill="#fff"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg><svg width="38" height="38" viewBox="0 0 24 24" stroke="#fff" stroke-width="2.6" stroke-linecap="round"><path d="M5 5l14 14M19 5L5 19"/></svg></div></div>
+<div id="foot"><div class="msg">Send message</div>
+<svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 21s-7.5-4.6-9.5-9.2C1 8.2 3.4 4.5 7 4.5c2.1 0 3.6 1.2 5 3 1.4-1.8 2.9-3 5-3 3.6 0 6 3.7 4.5 7.3C19.5 16.4 12 21 12 21z"/></svg>
+<svg width="54" height="54" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="round"><path d="M22 3L9.5 13.5M22 3l-7 18-4-8.5L2.5 9z"/></svg></div>
+</div>
+<script>
+const SEG=1.2, NS=4, cl=(x,a=0,b=1)=>Math.min(b,Math.max(a,x));
+function back(x,k=2.2){x=cl(x);x-=1;return 1+(k+1)*x*x*x+k*x*x}
+let segs,bars,stk,tap,yes;
+window.init=(c)=>{
+  const host=document.getElementById('segs');
+  c.slides.forEach(s=>{const d=document.createElement('div');d.className='seg';d.style.background=`linear-gradient(160deg,${s.colors[0]},${s.colors[1]})`;
+    const cd=document.createElement('div');cd.className='card';const im=document.createElement('img');im.src=s.src;im.style.marginTop=s.crop;cd.appendChild(im);d.appendChild(cd);host.appendChild(d)});
+  document.getElementById('handle').textContent=c.handle; document.getElementById('ini').textContent=c.initials;
+  const st=c.stickers;
+  document.getElementById('s0').textContent=st.text; document.getElementById('pq').textContent=st.poll.question;
+  document.getElementById('pa').textContent=st.poll.answers[0]; document.getElementById('pb').textContent=st.poll.answers[1];
+  document.getElementById('ln').textContent=st.link; document.getElementById('qt').textContent=st.question;
+  segs=[...document.querySelectorAll('.seg')]; bars=[...document.querySelectorAll('.bar i')]; stk=[0,1,2,3].map(i=>document.getElementById('s'+i));
+  tap=document.getElementById('tap'); yes=document.getElementById('yes');
+  return Promise.all([document.fonts.load('800 40px Archivo').then(f=>{if(!f.length)throw new Error('Archivo font did not load')}),...[...document.images].map(im=>im.complete?1:new Promise((r,j)=>{im.onload=r;im.onerror=()=>j(im.src)}))]);
+};
+window.render=(t)=>{
+  const i=Math.min(NS-1,Math.floor(t/SEG)), lt=t-i*SEG;
+  segs.forEach((s,k)=>{s.style.display=k===i?'block':'none'});
+  const c=segs[i].firstElementChild, e0=cl(lt/0.3), z=0.9+0.1*back(e0,1.6)+0.03*(lt/SEG);
+  c.style.transform=`rotate(${(i%2?-2:2)*(1-0.5*lt/SEG)}deg) scale(${z})`;
+  bars.forEach((b,k)=>{b.style.width=(k<i?100:k>i?0:cl(lt/SEG)*100)+'%'});
+  stk.forEach((s,k)=>{
+    if(k!==i){s.style.opacity=0;return}
+    const e=cl((lt-0.12)/0.28), sc=0.2+0.8*back(e), rot=(k%2?-4:5)*(1-e)+(k%2?-3:3);
+    s.style.opacity=e>0?1:0; s.style.transform=`translate(-50%,-50%) rotate(${rot}deg) scale(${sc})`;
+  });
+  yes.classList.toggle('sel',i===1&&lt>0.62);
+  let tp=null;
+  if(i===1&&lt>0.55&&lt<0.85) tp=[370,1670,(lt-0.55)/0.3];
+  else if(lt>SEG-0.22&&i<NS-1) tp=[900,900,(lt-(SEG-0.22))/0.22];
+  if(tp){tap.style.opacity=(0.9*(1-tp[2])).toFixed(3);tap.style.left=tp[0]+'px';tap.style.top=tp[1]+'px';tap.style.transform=`translate(-50%,-50%) scale(${0.4+0.8*tp[2]})`}else tap.style.opacity=0;
+};
+</script></body></html>
